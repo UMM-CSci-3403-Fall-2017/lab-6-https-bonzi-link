@@ -23,6 +23,7 @@ public class EchoServer {
 
 
             outStream.flush();
+            System.out.flush();
             client.close();
 
         } catch (IOException ioe) {

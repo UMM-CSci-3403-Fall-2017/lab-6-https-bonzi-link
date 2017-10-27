@@ -20,6 +20,9 @@ public class EchoServer {
             while ((myByte =inStream.read()) != -1) {
                 outStream.write(myByte);
             }
+
+
+            outStream.flush();
             client.close();
 
         } catch (IOException ioe) {

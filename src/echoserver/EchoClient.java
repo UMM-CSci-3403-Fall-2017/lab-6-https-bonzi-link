@@ -21,7 +21,7 @@ public class EchoClient {
                     out.write((byte)myByte);
                     System.out.write(serverIn.read());
                 }
-
+                out.flush();
                 socket.close();
 
         } catch (IOException ioe) {

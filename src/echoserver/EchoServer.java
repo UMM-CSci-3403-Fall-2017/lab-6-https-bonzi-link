@@ -17,14 +17,21 @@ public class EchoServer {
             InputStream inStream = client.getInputStream();
             OutputStream outStream = client.getOutputStream();
             System.out.println("Got a request!");
-            while ((myByte =inStream.read()) != -1) {
+
+            /*
+            until this loop doesn't receive a byte, it will write the inStream to the output
+            stream.
+             */
+            while ((myByte = inStream.read()) != -1) {
                 outStream.write(myByte);
             }
 
-
+            //flushing remaining output streams to ensure everything is written
             outStream.flush();
             System.out.flush();
             client.close();
+            inStream.close();
+            outStream.close();
 
         } catch (IOException ioe) {
             System.err.println("OUCH!");

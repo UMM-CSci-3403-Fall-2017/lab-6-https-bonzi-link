@@ -10,36 +10,17 @@ public class EchoClient {
 
     public static void main(String[] args) {
         try {
-            Socket socket = new Socket("spacewhale.morris.umn.edu", 6013);
+            Socket socket = new Socket("Acrylic.morris.umn.edu", 6013);
             // You can change 127.0.0.1 to a machine name if you want to try this across
             // the network to another machine.
             // Socket socket = new Socket("some.machine.edu", 6013);
-
-
-                //byte bytes[] = new byte[1024*64];
                 int myByte;
-                BufferedReader reader;
-                InputStream readerStream = System.in;
+                InputStream serverIn = socket.getInputStream();
                 OutputStream out = socket.getOutputStream();
-                String line;
-                while((myByte = readerStream.read()) != -1){
-                    reader = new BufferedReader(new InputStreamReader(readerStream));
-                    if((line = reader.readLine()) != null){
-                        System.out.println(line);
-                    }
+                while((myByte = System.in.read())!=-1){
                     out.write((byte)myByte);
+                    System.out.write(serverIn.read());
                 }
-
-
-
-                /*while ((count = fileInput.read(bytes)) > 0) {
-                    out.write(bytes, 0, count);
-
-
-                }*/
-
-
-                out.close();
 
                 socket.close();
 

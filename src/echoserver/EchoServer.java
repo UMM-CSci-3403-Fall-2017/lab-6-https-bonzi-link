@@ -13,18 +13,17 @@ public class EchoServer {
 
             //InputStream fileInput = sock.getI
             Socket client = serverSock.accept();
+            int myByte;
             InputStream inStream = client.getInputStream();
             OutputStream outStream = client.getOutputStream();
-            while (inStream.read() != -1) {
-                System.out.println("Got a request!");
-                int count;
-
-                PrintWriter writer = new PrintWriter(client.getOutputStream(), true);
-                writer.println(inStream.read());
+            System.out.println("Got a request!");
+            while ((myByte =inStream.read()) != -1) {
+                outStream.write(myByte);
             }
             client.close();
 
         } catch (IOException ioe) {
+            System.err.println("OUCH!");
             System.err.println(ioe);
         }
     }
